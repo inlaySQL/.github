@@ -53,7 +53,6 @@ is being built next and why.
 Dual licensed: the [GNU AGPL v3.0](https://github.com/inlaySQL/inlaysql/blob/main/LICENSE),
 or a [commercial licence](https://github.com/inlaySQL/inlaysql/blob/main/LICENSE-COMMERCIAL.md)
 from Solution Forest Limited for use without the AGPL's obligations.
-Versions released before 2026-08-20 were MIT, and that grant stands.
 
 ### How it is built
 
