@@ -26,17 +26,19 @@ LIMIT 10;
 
 | | |
 | --- | --- |
-| Point reads | 1.43× SQLite in WAL mode |
-| Concurrent writes | 9× SQLite at 8 writers, 0% aborted |
-| Vector search | 9.4× `sqlite-vec` at the same recall |
-| Hybrid search | ~14× DuckDB and pgvector |
-| SQL Logic Tests | 1008, all passing |
+| Point reads | 1.33× SQLite in WAL mode, 4.97× its durable mode |
+| Concurrent writes | 7.4× SQLite at 8 writers, 0% aborted |
+| Vector search | 9.5× `sqlite-vec` at the same recall |
+| Hybrid search | 14–17× DuckDB and pgvector |
+| Reads over the MySQL wire | 1.52× MySQL 8, both sides on the same driver |
+| SQL Logic Tests | 1145, all passing |
 
 Every number regenerates from a script in the repository, and the
 [benchmarks](https://github.com/inlaySQL/inlaysql/blob/main/BENCHMARK.md)
 publish the losses beside the wins — joins and indexed range scans are still
-slower than SQLite, and MySQL still commits faster on a single connection.
-A table that only contains wins is advertising.
+slower than SQLite, MySQL still commits faster on one connection, and over the
+wire its write throughput pulls away at eight. A table that only contains wins
+is advertising.
 
 ### It is experimental, and says so
 
@@ -44,9 +46,10 @@ The on-disk format is pre-1.0 and the policy is recreate, not migrate. The
 MySQL server is plaintext and localhost-first. What does not work yet is
 written down in the repository rather than discovered later:
 [TESTING.md](https://github.com/inlaySQL/inlaysql/blob/main/TESTING.md) covers
-what is tested and what is not,
-[PLAN.md](https://github.com/inlaySQL/inlaysql/blob/main/PLAN.md) covers what
-is being built next and why.
+what is tested and what is not, and the README's
+[Next](https://github.com/inlaySQL/inlaysql#next) and
+[What this is not](https://github.com/inlaySQL/inlaysql#what-this-is-not)
+sections cover what is being built and what is deliberately not.
 
 ### Licence
 
