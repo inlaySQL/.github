@@ -26,11 +26,11 @@ LIMIT 10;
 
 | | |
 | --- | --- |
-| Point reads | 1.33× SQLite in WAL mode, 4.97× its durable mode |
-| Concurrent writes | 7.4× SQLite at 8 writers, 0% aborted |
-| Vector search | 9.5× `sqlite-vec` at the same recall |
-| Hybrid search | 14–17× DuckDB and pgvector |
-| Reads over the MySQL wire | 1.52× MySQL 8, both sides on the same driver |
+| Point reads | 4.57× SQLite's durable mode, within noise of its WAL mode |
+| Concurrent writes | 8.9× SQLite at 8 writers, 0% aborted |
+| Vector search | 7.56× `sqlite-vec` at the same recall |
+| Hybrid search | ~92× DuckDB and 110× pgvector |
+| Reads over the MySQL wire | 1.22× MySQL 8, both sides on the same driver |
 | SQL Logic Tests | 1145, all passing |
 
 Every number regenerates from a script in the repository, and the
