@@ -31,7 +31,7 @@ LIMIT 10;
 | Vector search | 88.29 µs, 7.56× `sqlite-vec` at 100% recall |
 | Hybrid search | 130 µs, ~92× DuckDB and 110× pgvector |
 | Reads over MySQL wire | 28.9k ops/s, 1.22× MySQL 8 at 1 connection |
-| SQL Logic Tests | 1273, all passing |
+| SQL Logic Tests | 1307, all passing |
 
 Every number regenerates from a script in the repository, and the
 [benchmarks](https://github.com/inlaySQL/inlaysql/blob/main/BENCHMARK.md)
