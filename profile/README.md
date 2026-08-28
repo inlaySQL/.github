@@ -26,12 +26,12 @@ LIMIT 10;
 
 | | |
 | --- | --- |
-| Point reads | 4.57× SQLite's durable mode, within noise of its WAL mode |
-| Concurrent writes | 8.9× SQLite at 8 writers, 0% aborted |
-| Vector search | 7.56× `sqlite-vec` at the same recall |
-| Hybrid search | ~92× DuckDB and 110× pgvector |
-| Reads over the MySQL wire | 1.22× MySQL 8, both sides on the same driver |
-| SQL Logic Tests | 1250, all passing |
+| Point reads | 901k ops/s, 4.57× SQLite's durable mode |
+| Concurrent writes | 768 commits/s, 8.9× SQLite at 8 writers, 0% aborted |
+| Vector search | 88.29 µs, 7.56× `sqlite-vec` at 100% recall |
+| Hybrid search | 130 µs, ~92× DuckDB and 110× pgvector |
+| Reads over MySQL wire | 28.9k ops/s, 1.22× MySQL 8 at 1 connection |
+| SQL Logic Tests | 1145, all passing |
 
 Every number regenerates from a script in the repository, and the
 [benchmarks](https://github.com/inlaySQL/inlaysql/blob/main/BENCHMARK.md)
