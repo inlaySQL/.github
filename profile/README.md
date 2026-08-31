@@ -26,24 +26,32 @@ LIMIT 10;
 
 | | |
 | --- | --- |
-| Point reads | 901k ops/s, 4.57× SQLite's durable mode |
-| Concurrent writes | 768 commits/s, 8.9× SQLite at 8 writers, 0% aborted |
-| Vector search | 88.29 µs, 7.56× `sqlite-vec` at 100% recall |
-| Hybrid search | 130 µs, ~92× DuckDB and 110× pgvector |
-| Reads over MySQL wire | 28.9k ops/s, 1.22× MySQL 8 at 1 connection |
+| Point reads | 522,562 ops/s, ~2-4× SQLite's durable mode |
+| Concurrent writes | 1,209 commits/s, ~13× SQLite at 8 writers, 0% aborted |
+| Vector search | 78.96 µs, ~8-10× `sqlite-vec` at 100% recall |
+| Hybrid search | 198.0 µs, ~55-70× DuckDB and pgvector |
+| Indexed range scan | 49,259 ops/s, ~2-4× MySQL 8 and PostgreSQL 17 |
+| Reads over MySQL wire | 9,033.3 ops/s, 1.22× MySQL 8 at 1 connection |
 | SQL Logic Tests | 1307, all passing |
 
 Every number regenerates from a script in the repository, and the
 [benchmarks](https://github.com/inlaySQL/inlaysql/blob/main/BENCHMARK.md)
-publish the losses beside the wins — joins and indexed range scans are still
-slower than SQLite, MySQL still commits faster on one connection, and over the
-wire its write throughput pulls away at eight. A table that only contains wins
-is advertising.
+publish the losses beside the wins. `GROUP BY` and aggregates are the worst
+shape measured — 3-5× slower than both MySQL and PostgreSQL. Range scans and
+the PK-ordered join lose to SQLite, though the same range scan beats both
+servers. MySQL commits faster on one connection and pulls further ahead at
+sixteen. A table that only contains wins is advertising.
+
+These multiples are rounded to the precision the harness's own measured
+run-to-run spread supports — repeating the identical binary against identical
+data moves them by several percent, and the benchmarks say by how much.
 
 ### It is experimental, and says so
 
 The on-disk format is pre-1.0 and the policy is recreate, not migrate. The
-MySQL server is plaintext and localhost-first. What does not work yet is
+MySQL server is plaintext and localhost-first: no TLS, one credential from a
+flag, bound to 127.0.0.1 by default — do not put it on a network you do not
+own. What does not work yet is
 written down in the repository rather than discovered later:
 [TESTING.md](https://github.com/inlaySQL/inlaysql/blob/main/TESTING.md) covers
 what is tested and what is not, and the README's
