@@ -22,6 +22,12 @@ ORDER BY score DESC
 LIMIT 10;
 ```
 
+Over the MySQL wire it also answers to MySQL's own spelling: `MATCH (body)
+AGAINST (?)` is the native BM25 probe, not an emulation of one, and
+`CREATE FULLTEXT INDEX` is the DDL Laravel's `$table->fullText()` already
+emits. Boolean mode is refused by name rather than quietly answered as if it
+were natural-language mode.
+
 ### Where it stands
 
 | | |
