@@ -49,9 +49,11 @@ data moves them by several percent, and the benchmarks say by how much.
 ### It is experimental, and says so
 
 The on-disk format is pre-1.0 and the policy is recreate, not migrate. The
-MySQL server is plaintext and localhost-first: no TLS, one credential from a
-flag, bound to 127.0.0.1 by default — do not put it on a network you do not
-own. What does not work yet is
+MySQL server is localhost-first: it binds 127.0.0.1 by default, the account
+model is still one credential from a flag, and the wire is plaintext until
+`--tls-cert`/`--tls-key` are given (`--tls-required` then refuses any login
+that did not encrypt). Without a certificate, do not put it on a network you
+do not own. What does not work yet is
 written down in the repository rather than discovered later:
 [TESTING.md](https://github.com/inlaySQL/inlaysql/blob/main/TESTING.md) covers
 what is tested and what is not, and the README's
