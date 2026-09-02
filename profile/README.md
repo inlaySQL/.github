@@ -35,17 +35,18 @@ were natural-language mode.
 | Point reads | 872,474 ops/s, ~5× SQLite's durable mode; p50 583 ns |
 | Concurrent writes | 1,228 commits/s, ~14× SQLite at 8 writers, 0% aborted |
 | Vector search | 69.08 µs, ~9× `sqlite-vec` at 100% recall |
-| Hybrid search | 198.0 µs, ~55-70× DuckDB and pgvector |
-| Indexed range scan | 49,259 ops/s, ~2-4× MySQL 8 and PostgreSQL 17 |
-| Reads over MySQL wire | 9,033.3 ops/s, 1.22× MySQL 8 at 1 connection |
+| Hybrid search | 192.0 µs, ~60-70× DuckDB and pgvector |
+| Indexed range scan | 97,624 ops/s, ~7× MySQL 8.4 and ~4.5× PostgreSQL 17 |
+| Reads over MySQL wire | 10,292.4 ops/s, ~1.2× MySQL 8.4 at 1 connection |
 | SQL Logic Tests | 1307, all passing |
 
 Every number regenerates from a script in the repository, and the
 [benchmarks](https://github.com/inlaySQL/inlaysql/blob/main/BENCHMARK.md)
-publish the losses beside the wins. `GROUP BY` and aggregates are the worst
-shape measured — 3-5× slower than both MySQL and PostgreSQL. Range scans and
-the `LIMIT 10` join shapes lose to SQLite (the full two-table joins now win
-3× and 8×), though the same range scan beats both servers. MySQL commits faster on one connection and pulls further ahead at
+publish the losses beside the wins. Scalar aggregates still lose to both
+MySQL 8.4 and PostgreSQL 17 (0.75× / 0.62×), batch inserts lose to both on
+the durability barrier, and range scans and the `LIMIT 10` join shapes lose
+to SQLite — while `GROUP BY` now beats both servers and the full two-table
+joins win 3× and 8× against SQLite. MySQL commits faster on one connection and pulls further ahead at
 sixteen. A table that only contains wins is advertising.
 
 These multiples are rounded to the precision the harness's own measured
