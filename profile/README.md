@@ -36,11 +36,11 @@ were natural-language mode.
 
 | | |
 | --- | --- |
-| Point reads | 872,474 ops/s, ~5× SQLite's durable mode; p50 583 ns |
-| Concurrent writes | 1,228 commits/s, ~14× SQLite at 8 writers, 0% aborted |
-| Vector search | 69.08 µs, ~9× `sqlite-vec` at 100% recall |
+| Point reads | 692,893 ops/s, ~4× SQLite's durable mode; p50 625 ns |
+| Concurrent writes | 1,184 commits/s, ~13× SQLite at 8 writers, 0% aborted |
+| Vector search | 68.67 µs, ~9× `sqlite-vec` at 100% recall |
 | Hybrid search | 192.0 µs, ~60-70× DuckDB and pgvector |
-| Indexed range scan | 97,624 ops/s, ~7× MySQL 8.4 and ~4.5× PostgreSQL 17 |
+| Indexed range scan | 119,219 ops/s, ~8× MySQL 8.4 and ~5.5× PostgreSQL 17 |
 | Reads over MySQL wire | 10,292.4 ops/s, ~1.2× MySQL 8.4 at 1 connection |
 | SQL Logic Tests | 1307, all passing |
 
