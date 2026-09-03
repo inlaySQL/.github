@@ -1,10 +1,14 @@
+<div align="center">
+  <img src="../assets/inlaysql-square.svg" width="160" alt="InlaySQL">
+</div>
+
 # InlaySQL
 
 **An embedded SQL database in Rust.** SQLite's model — one file, no server,
 embed it anywhere — with concurrent writers, native vector and BM25 retrieval,
 and a MySQL wire protocol your ORM already speaks.
 
-[**inlaysql.github.io**](https://inlaysql.github.io) · [the engine](https://github.com/inlaySQL/inlaysql) · [benchmarks](https://github.com/inlaySQL/inlaysql/blob/main/BENCHMARK.md)
+[**inlaysql.github.io**](https://inlaysql.github.io) · [the engine](https://github.com/inlaySQL/inlaysql) · [benchmarks](https://github.com/inlaySQL/inlaysql/blob/main/BENCHMARK.md) · [framework examples](https://inlaysql.github.io/frameworks/) · [Chrome extension](https://github.com/inlaySQL/inlaysql-chrome)
 
 ---
 
