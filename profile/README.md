@@ -36,12 +36,12 @@ were natural-language mode.
 
 | | |
 | --- | --- |
-| Point reads | 692,893 ops/s, ~4× SQLite's durable mode; p50 625 ns |
-| Concurrent writes | 1,184 commits/s, ~13× SQLite at 8 writers, 0% aborted |
-| Vector search | 68.67 µs, ~9× `sqlite-vec` at 100% recall |
-| Hybrid search | 192.0 µs, ~60-70× DuckDB and pgvector |
-| Indexed range scan | 119,219 ops/s, ~8× MySQL 8.4 and ~5.5× PostgreSQL 17 |
-| Reads over MySQL wire | 10,292.4 ops/s, ~1.2× MySQL 8.4 at 1 connection |
+| Point reads | 991,539 ops/s, ~3-11× SQLite's durable mode; p50 0.75 µs |
+| Concurrent writes | 1,110 commits/s, ~13× SQLite at 8 writers, 0% aborted |
+| Vector search | 59.42 µs, ~11× `sqlite-vec` at 100% recall |
+| Hybrid search | 167.0 µs, ~25× Meilisearch and ~70-90× DuckDB/pgvector |
+| Indexed range scan | 126,183 ops/s, ~8.8× MySQL 8.4 and ~5.8× PostgreSQL 17 |
+| Reads over MySQL wire | 9,386.1 ops/s, ~1.05× MySQL 8.4 at 1 connection |
 | SQL Logic Tests | 1307, all passing |
 
 Every number regenerates from a script in the repository, and the
@@ -50,7 +50,8 @@ publish the losses beside the wins. Batch inserts beat MySQL 8.4 and lose
 to PostgreSQL 17 like for like (0.68×), and range scans and the `LIMIT 10` join shapes lose
 to SQLite — while `GROUP BY` now beats both servers and the full two-table
 joins win 3× and 8× against SQLite. MySQL commits faster on one connection and pulls further ahead at
-sixteen. A table that only contains wins is advertising.
+eight. Both read-over-the-wire cells fell about 10% against the previous edition, by more than
+either cell's own spread, and that is published unattributed rather than explained away. A table that only contains wins is advertising.
 
 These multiples are rounded to the precision the harness's own measured
 run-to-run spread supports — repeating the identical binary against identical
