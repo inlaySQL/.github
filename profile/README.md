@@ -47,7 +47,7 @@ were natural-language mode.
 Every number regenerates from a script in the repository, and the
 [benchmarks](https://github.com/inlaySQL/inlaysql/blob/main/BENCHMARK.md)
 publish the losses beside the wins. Batch inserts beat MySQL 8.4 and lose
-to PostgreSQL 17 like for like (0.68×), and range scans and the `LIMIT 10` join shapes lose
+to PostgreSQL 17 like for like (0.88×), and range scans and the `LIMIT 10` join shapes lose
 to SQLite — while `GROUP BY` now beats both servers and the full two-table
 joins win 3× and 8× against SQLite. MySQL commits faster on one connection and pulls further ahead at
 eight. Concurrency and retrieval both moved this edition and neither is attributed: the writer rows
